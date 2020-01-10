@@ -2,14 +2,14 @@
 # Maintainer: Natanael Copa <ncopa@alpinelinux.org>
 pkgname=libcec
 pkgver=4.0.4
-pkgrel=2
+pkgrel=3
 pkgdesc="libcec for the Pulse-Eight USB-CEC adapter"
 url="https://github.com/Pulse-Eight/libcec"
 arch="all"
 license="GPL-2.0-or-later"
 depends=""
 depends_dev="eudev-dev python3-dev libxrandr-dev swig"
-makedepends="$depends_dev p8-platform-dev cmake"
+makedepends="$depends_dev p8-platform-dev raspberrypi-libs raspberrypi-dev cmake"
 install=""
 subpackages="$pkgname-dev"
 source="https://github.com/Pulse-Eight/libcec/archive/libcec-$pkgver.tar.gz"
@@ -22,6 +22,8 @@ build() {
 	cmake -DCMAKE_BUILD_TYPE=Release \
 		-DBUILD_SHARED_LIBS=1 \
 		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DRPI_INCLUDE_DIR=/opt/vc/include \
+		-DRPI_LIB_DIR=/opt/vc/lib \
 		..
 	make
 }
