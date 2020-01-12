@@ -9,7 +9,12 @@ arch="all"
 license="GPL-2.0-or-later"
 depends=""
 depends_dev="eudev-dev python3-dev libxrandr-dev swig"
-makedepends="$depends_dev p8-platform-dev raspberrypi-libs raspberrypi-dev cmake"
+makedepends="$depends_dev p8-platform-dev cmake"
+case $CARCH in
+	arm*)
+		makedepends="$makedepends raspberrypi-libs raspberrypi-dev"
+		;;
+esac
 install=""
 subpackages="$pkgname-dev"
 source="https://github.com/Pulse-Eight/libcec/archive/libcec-$pkgver.tar.gz"
